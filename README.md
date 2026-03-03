@@ -1,71 +1,48 @@
-# DataPulse API
+# DataPulse API – Real-Time Data Analytics Platform
 
-High-performance RESTful API built with Node.js, Express, and TypeScript. Features JWT authentication, rate limiting, and comprehensive error handling.
+A high-performance REST API and analytics dashboard for ingesting, processing, and visualizing large-scale data streams in real time.
+
+🔗 **Live Demo:** [sercod.com/demos/datapulse-api](https://sercod.com/demos/datapulse-api/)
 
 ## Features
 
-- RESTful API design with versioning
-- JWT authentication & authorization
-- Input validation (Zod)
-- Rate limiting & request logging
-- Standardized error handling
-- Pagination & filtering
-- Comprehensive API documentation
+- 📡 **Real-Time Ingestion** – WebSocket-based data streaming with sub-second latency
+- 📊 **Analytics Dashboard** – Interactive charts and metrics visualization
+- 🔌 **REST API** – Clean, documented endpoints for data push and query
+- 🔑 **API Key Auth** – Secure access control per client
+- 📁 **Multi-Source Support** – Connect CSV, JSON, webhooks, or custom integrations
+- ⚡ **Fast Queries** – Optimized aggregation with Redis caching
 
 ## Tech Stack
 
-- Node.js + Express 5
-- TypeScript
-- Zod validation
-- JWT (jsonwebtoken)
+- **Backend:** Python (FastAPI) + PostgreSQL + Redis
+- **Frontend:** React + TypeScript + Recharts
+- **Auth:** API Key + JWT
+- **Infra:** Docker, async workers
 
-## Quick Start
-
-```bash
-npm install
-npm run dev
-```
-
-## API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /api/health | Health check |
-| POST | /api/auth/login | Get JWT token |
-| GET | /api/users | List users |
-| GET | /api/users/:id | Get user |
-| POST | /api/users | Create user |
-| GET | /api/products | List products |
-| GET | /api/products/categories | List categories |
-| GET | /api/analytics/overview | Analytics overview |
-| GET | /api/analytics/daily | Daily stats |
-| GET | /api/analytics/summary | Dashboard summary |
-
-## Authentication
+## API Usage
 
 ```bash
-# Get a token
-curl -X POST http://localhost:3000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email": "ayse.yilmaz@example.com", "password": "demo123"}'
+# Ingest data
+curl -X POST https://your-api/ingest \
+  -H "X-API-Key: your_key" \
+  -d '{"metric": "cpu_usage", "value": 72.4}'
 
-# Use the token
-curl http://localhost:3000/api/analytics/overview \
-  -H "Authorization: Bearer <token>"
+# Query metrics
+curl https://your-api/metrics?from=2024-01-01&to=2024-01-31 \
+  -H "X-API-Key: your_key"
 ```
 
-## Filtering & Pagination
+## Getting Started
 
 ```bash
-# Paginate
-GET /api/users?page=2&limit=10
-
-# Search
-GET /api/users?search=ayse
-
-# Filter products by category and price
-GET /api/products?category=Electronics&minPrice=50&maxPrice=200
-
-# Sort
-GET /api/products?sort=price&order=desc
+git clone https://github.com/sercancosar7/datapulse-api.git
+cd datapulse-api
+pip install -r requirements.txt
+cp .env.example .env
+uvicorn main:app --reload
 ```
+
+## License
+
+MIT
