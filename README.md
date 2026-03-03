@@ -1,24 +1,25 @@
 # DataPulse API – Real-Time Data Analytics Platform
 
-A high-performance REST API and analytics dashboard for ingesting, processing, and visualizing large-scale data streams in real time.
+High-performance RESTful API with real-time data processing, caching, and comprehensive documentation.
 
 🔗 **Live Demo:** [sercod.com/demos/datapulse-api](https://sercod.com/demos/datapulse-api/)
 
 ## Features
 
-- 📡 **Real-Time Ingestion** – WebSocket-based data streaming with sub-second latency
-- 📊 **Analytics Dashboard** – Interactive charts and metrics visualization
-- 🔌 **REST API** – Clean, documented endpoints for data push and query
-- 🔑 **API Key Auth** – Secure access control per client
-- 📁 **Multi-Source Support** – Connect CSV, JSON, webhooks, or custom integrations
-- ⚡ **Fast Queries** – Optimized aggregation with Redis caching
+- 📡 **Real-Time Processing** – WebSocket-based data streaming with sub-second latency
+- ⚡ **Caching Layer** – Redis-powered caching for high-performance queries
+- 📚 **API Documentation** – Full Swagger/OpenAPI interactive docs
+- 🔑 **API Key Auth** – Secure per-client access control
+- 🗄️ **Flexible Storage** – MongoDB for time-series and unstructured data
+- 📊 **Analytics Endpoints** – Aggregation, filtering, and reporting out of the box
 
 ## Tech Stack
 
-- **Backend:** Python (FastAPI) + PostgreSQL + Redis
-- **Frontend:** React + TypeScript + Recharts
+- **Runtime:** Node.js + Express
+- **Database:** MongoDB
+- **Cache:** Redis
+- **Docs:** Swagger / OpenAPI
 - **Auth:** API Key + JWT
-- **Infra:** Docker, async workers
 
 ## API Usage
 
@@ -26,6 +27,7 @@ A high-performance REST API and analytics dashboard for ingesting, processing, a
 # Ingest data
 curl -X POST https://your-api/ingest \
   -H "X-API-Key: your_key" \
+  -H "Content-Type: application/json" \
   -d '{"metric": "cpu_usage", "value": 72.4}'
 
 # Query metrics
@@ -38,11 +40,11 @@ curl https://your-api/metrics?from=2024-01-01&to=2024-01-31 \
 ```bash
 git clone https://github.com/sercancosar7/datapulse-api.git
 cd datapulse-api
-pip install -r requirements.txt
+npm install
 cp .env.example .env
-uvicorn main:app --reload
+npm run dev
 ```
 
 ## License
 
-MIT
+MIT – see [LICENSE](./LICENSE)
